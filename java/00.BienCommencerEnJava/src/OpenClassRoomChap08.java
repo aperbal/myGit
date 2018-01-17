@@ -62,7 +62,21 @@ public class OpenClassRoomChap08 {
 		int [] tab2 = {1, 4, 38};
 		parcourirTableauInt(tab2);
 		System.out.println("");		
+
+		parcourirTableau(tab1);
+		System.out.println("");		
+		
+		parcourirTableau(tab2);
+		System.out.println("");		
 				
+		String [][] tab3={{"toto", "titi", "tutu", "tete", "tata"}, {"1", "2", "3", "4"}};
+		int [][] tab4 = {{0,2,4,6},{1,3,5,7}};
+		
+		parcourirTableau(tab3);
+		System.out.println("");		
+		
+		parcourirTableau(tab4);
+		System.out.println("");		
 	}
 	
 	public static double myPow (double a, int b) {
@@ -80,4 +94,36 @@ public class OpenClassRoomChap08 {
 		System.out.print("Contenu du tableau : ");
 		for(int i : tableau) System.out.print(i + " ");
 	}
+	
+	// Principe de surcharge : on déclare plusieurs fois la méthode
+	// avec des paramètres de types différents
+
+	public static void parcourirTableau (String[] tableau) {
+		System.out.print("Contenu du tableau : ");
+		for(String valeurTab : tableau) System.out.print(valeurTab + " ");
+	}	
+	
+	public static void parcourirTableau (int [] tableau) {
+		System.out.print("Contenu du tableau : ");
+		for(int i : tableau) System.out.print(i + " ");
+	}
+	
+	public static void parcourirTableau (String[][] tab2) {
+		System.out.print("Contenu du tableau : \n");
+		for(String [] tab : tab2) {
+			for (String val: tab) System.out.print(val + " ");
+			System.out.println(" ");
+		}
+	}
+	
+	public static void parcourirTableau (int[][] tab2) {
+		System.out.print("Contenu du tableau : \n");
+		for(int [] tab : tab2) {
+			for (int val: tab) System.out.print(val + " ");
+			System.out.println(" ");
+		}
+	}
+
+	
+	
 }
