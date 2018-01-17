@@ -6,5 +6,7 @@ package com.scalaapp
 object ScalaApp {
   def main(args: Array[String]): Unit = {
     print("Hello, World !")
+    val capital = Map("US" -> "Washington", "France" -> "Paris")
+    println(capital("France"))
   }
 }
