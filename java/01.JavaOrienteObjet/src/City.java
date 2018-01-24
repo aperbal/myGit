@@ -1,4 +1,7 @@
+import java.util.Objects;
+
 public class City {
+
 	// Déclaration de variable d'instance : par défault, sans autres précisions,
 	// ces variables sont publiques et donc accessibles depuis l'extérieur de la classe.
 	// Elle permette de déterminer les caractéristiques propres d'une instance
@@ -22,7 +25,8 @@ public class City {
 	}
 	
 	
-	//Constructeur par défault
+	// Constructeur par défault
+	
 	public City() {
 		System.out.println("Ceci est un constructeur par défaut... Aucun paramètre passé à cette méthode, mais instanciation d'un objet par défaut...");
 		cityName = "Inconnu";
@@ -58,6 +62,10 @@ public class City {
 		return cityNbInhabitants;
 	}
 
+	public char getCityNbInhabitantsCat () {
+		return cityNbInhabitantsCat;
+	}
+
 	// Mutateurs
 	
 	public void setCityName(String cName) {
@@ -73,8 +81,7 @@ public class City {
 		this.cityNbInhabitantsCat();
 	}
 	
-
-	// Exemple de méthode d'instance
+	// Exemples de méthode d'instance
 	private void cityNbInhabitantsCat (){
 		if 
 			(this.cityNbInhabitants <     1000) cityNbInhabitantsCat = 'A';
@@ -96,9 +103,80 @@ public class City {
 		else if (this.cityNbInhabitants < cityComp.getCityNbInhabitants()) return cityComp.getCityName() + " est plus peuplé que " + this.cityName + ".";
 		else return this.cityName + " et " + cityComp.getCityName() + " ont le même nombre d'habitants.";
 	}
+	
+	
+	// Polymorphisme d'une méthode Object (définie pour tout objet Java), ici toString();
+	public String toString(){
+		return "Je suis la ville de " + this.cityCountry + " appelée " + this.cityName + ". J'ai " + this.cityNbInhabitants + " habitants, donc de catégorie " + this.cityNbInhabitantsCat +".";
+	}
+
+	// 2 méthodes très souvent redéfinie : hashCode() et equals()
+	// Ici hashCode2 qui est une version redéfinit complètement par dev...
+	public int hashCode2() {
+		//On définit un multiplication impair, de préférence un nombre premier
+		//Ceci afin de garantir l'unicité du résultat final
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + cityNbInhabitantsCat;
+		result = prime * result + cityNbInhabitants;
+		result = prime * result + ((cityCountry == null) ? 0 : cityCountry.hashCode());
+		result = prime * result + ((cityName == null) ? 0 : cityName.hashCode());
+		return result;
+	}
+
+
+	// Redéfinition avec la classe Objects
+	public int hashCode() {
+		return Objects.hash(this.cityNbInhabitantsCat, this.cityNbInhabitants, this.cityCountry, this.cityName);
+	}
+
+	
+	public boolean equals2(Object obj) {
+		// Vérification de base : les références d'objets sont identique
+		if(this == obj) return true;
+		// Vérification de base : l'objet à comparer n'est pas null
+		if (obj == null) return false;
+		// Vérification de base : les objets sont du même type... Voir dans les prochains chapitres
+		if(this.getClass() != obj.getClass()) return false;
+		
+		// Maintenant ont compare les valeurs des attributs des 2 instances
+		City D = (City) obj;
+		if(D.cityNbInhabitantsCat != this.cityNbInhabitantsCat) return false;
+		if(D.cityNbInhabitants != this.cityNbInhabitants) return false;
+		
+		if(this.cityCountry == null) if(D.cityCountry != null) return false;
+		else if (!this.cityCountry.equals(D.cityCountry)) return false;
+		
+		if(this.cityName == null) if(D.cityName != null) return false;
+		else if (!this.cityName.equals(D.cityName)) return false;
+		
+		return true;
+
+	}
+	
+	// Redéfinition avec la classe Objects
+	public boolean equals(Object obj) {
+		
+		// Vérification de base : les références d'objets sont identique
+		if(this == obj) return true;
+		// Vérification de base : l'objet à comparer n'est pas null
+		if (obj == null) return false;
+		// Vérification de base : les objets sont du même type... Voir dans les prochains chapitres
+		if(this.getClass() != obj.getClass()) return false;
+		
+		City C = (City) obj;
+		
+		return
+			   Objects.equals(C.getCityNbInhabitantsCat(), this.cityNbInhabitantsCat)
+			&& Objects.equals(C.getCityNbInhabitants(), this.cityNbInhabitants)
+			&& Objects.equals(C.getCityName(), this.cityName)
+			&& Objects.equals(C.getCityCountry(), this.cityCountry);
+		
+	}
 
 }
 
+// Déclaration d'une sousclasse de City (on dit que City est la superclasse de Capital)
 class Capital extends City {
 	
 	protected String monument;
@@ -120,8 +198,16 @@ class Capital extends City {
 		this.monument = monumentName;
 	}
 	
+	// Déclaration d'une fonction polymorphe : elle à la même squelette
+	// que la méthode de la superclasse mais ne renvoit pas le même résultat (mais il a le même typage)
 	public String cityDescription () {
 		return super.cityDescription() + " Je suis la Capitale et j'ai un monument : " + this.monument;
 	}
+	
+	// Polymorphisme d'une méthode Object (définie pour tout objet Java), ici toString();
+	public String toString () {
+		return super.toString() + " Je suis la Capitale et j'ai un monument : " + this.monument;
+	}
+
 	
 }
