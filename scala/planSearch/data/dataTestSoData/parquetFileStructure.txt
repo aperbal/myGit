@@ -1,0 +1,17 @@
+Query: describe dwh_dpvm.twh_sta_reconciliation_adrsgc_init
++----------------------+---------+---------+
+| name                 | type    | comment |
++----------------------+---------+---------+
+| no_adr               | bigint  |         |
+| no_cli               | string  |         |
+| an_parut             | string  |         |
+| no_cde               | string  |         |
+| no_empl              | double  |         |
+| flg_payant           | tinyint |         |
+| flg_adr_masquee      | tinyint |         |
+| flg_acces_negocie    | tinyint |         |
+| sgc_adresse_norm     | string  |         |
+| co_postal            | string  |         |
+| sgc_li_localite_norm | string  |         |
+| sgc_intitule_norm    | string  |         |
++----------------------+---------+---------+

@@ -1,6 +1,6 @@
 package com.oc.test;
 
-public class Chien extends Animal {
+public class Chien extends Animal implements Rintintin{
 	
 	public String shout() {
 		return "The dog " + this.animalName + " barks.";			
@@ -16,6 +16,7 @@ public class Chien extends Animal {
 		super.animalWeigth = weight;
 	}	
 	
-	public void drink() {super.drink();}
-	public void eat() {super.drink();}
+	public void hug() {System.out.println("Please hug me ! ...");}
+	public void lick() {System.out.println("Come here so I lick your face master :) !");}
+	public void sitUpAndBeg() {System.out.println("Yes, I sit up and beg for you master...");}
 }

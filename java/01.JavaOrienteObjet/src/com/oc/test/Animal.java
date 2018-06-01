@@ -6,8 +6,8 @@ abstract class Animal {
 	protected double animalWeigth;
 	protected String animalColor;
 	
-	protected void drink() {System.out.println(this.animalName + " drinks water.");}
-	protected void eat() {System.out.println(this.animalName + " eats meat.");}
+	public void drink() {System.out.println(this.animalName + " drinks water.");}
+	public void eat() {System.out.println(this.animalName + " eats meat.");}
 	abstract String shout();
 	abstract String move(String place);	
 	

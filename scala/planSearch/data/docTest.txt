@@ -1,0 +1,4 @@
+Je suis un fichier texte de test.
+C'est pour apprendre Python...
+Ou plutôt Scala !!!!
+;)
